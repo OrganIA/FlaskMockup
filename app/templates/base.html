@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>OrganIA</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	</head>
+
+	<body>
+
+		<div id="main">
+			<nav id="navbar">
+				<header>
+					<h1>
+						<a>OrganIA</a>
+					</h1>
+				</header>
+
+				<div id="navlinks">
+					<div id="navbox">
+						<a class="active">
+							<i class="fa fa-file-alt"></i> <span class="nav-text">Link 1</span>
+						</a>
+						<a>
+							<i class="fa fa-desktop"></i>
+						</a>
+						<a>
+							<i class="fa fa-map-marker-alt"></i>
+						</a>
+						<a>
+							<i class="fa fa-user"></i>
+						</a>
+						<a>
+							<i class="fa fa-chart-line"></i>
+						</a>
+						<a>
+							<i class="fa fa-comment-dots"></i>
+						</a>
+					</div>
+				</div>
+			</nav>
+
+			<main>
+				<div id="context-menu">
+					{% if user %}
+					<div id="current-user">
+						<img class="avatar" src="{{ user.avatar_url }}">
+						{{ user.first_name }} {{ user.last_name }}
+						<i class="fa fa-angle-down caret"></i>
+					</div>
+					{% endif %}
+				</div>
+
+				{% if title %}<h1>{{ title }}</h1>{% endif %}
+
+				{% block content %}
+				{% endblock %}
+
+			</main>
+		</div>
+
+		<script src="{{ url_for('static', filename='script.js') }}"></script>
+	</body>
+</html>
