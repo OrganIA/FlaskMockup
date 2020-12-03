@@ -3,9 +3,6 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 
 :root {
-	--border-color: #e3e9f6;
-	--bg-color: #f8faff;
-	--fg-color: #081f49;
 	--blue: #498afe;
 	--dark-blue: #071f49;
 	--sky-blue: #c7d0e8;
@@ -18,6 +15,7 @@
 
 	--bg-color: var(--white);
 	--fg-color: var(--dark-blue);
+	--border-color: #e3e9f6;
 
 	--font-immense: 38px;
 	--font-big: 21px;
@@ -29,6 +27,8 @@
 	--rounding: .75em;
 
 	--anim-time: 0.25s;
+
+	--shadow: 0 1px 2px rgba(0, 0, 0, .3);
 }
 
 * {
@@ -69,6 +69,8 @@ select,
 	border-radius: var(--rounding);
 	background-color: white;
 	transition: var(--anim-time) linear;
+	text-decoration: none;
+	color: inherit;
 }
 
 #navbar header {
@@ -76,6 +78,11 @@ select,
 	color: white;
 	padding: 0 0.5em;
 	text-align: center;
+}
+
+#navbar header a {
+	color: inherit;
+	text-decoration: none;
 }
 
 main {
@@ -119,7 +126,9 @@ input[type="number"] {
 	min-width: 4em;
 }
 
-button.active, .button.active {
+button.active,
+.button.active,
+[type="submit"] {
 	background-color: var(--blue);
 	color: white;
 }
@@ -255,4 +264,33 @@ tr td:last-child {
 	border-right: 2px solid var(--border-color);
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
+}
+
+form {
+	max-width: 700px;
+	margin: auto;
+	padding: 2em;
+	background-color: white;
+	box-shadow: var(--shadow);
+}
+
+.form-fields {
+	display: flex;
+	flex-flow: wrap row;
+	justify-content: space-between;
+}
+
+.form-input {
+	display: flex;
+	flex-direction: column;
+	margin: 1em 0;
+	width: 100%;
+}
+
+.form-input.small {
+	width: calc(50% - 1em);
+}
+
+.form-input.mini {
+	width: calc(33% - 1em);
 }

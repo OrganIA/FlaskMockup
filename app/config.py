@@ -7,3 +7,4 @@ class Config:
         'sqlite:///' + os.path.join(BASE_DIR, '../organia.db')
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = 'OrganIA'

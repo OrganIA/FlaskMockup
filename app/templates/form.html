@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method={{ form.method or 'GET' }}>
+	<div class="form-fields">
+		{% for field in form %}
+		<div class="form-input {{ field.render_kw['data-classes']|join(' ') }}">
+			{% if field.type not in ['CSRFTokenField'] %}
+			{{ field.label() }}
+			{% endif %}
+			{{ field() }}
+		</div>
+		{% endfor %}
+	</div>
+	<div class="form-submit">
+		<button type="submit">{{ form.submit }}</button>
+	</div>
+</form>
+{% endblock %}
