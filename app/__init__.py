@@ -24,7 +24,7 @@ def create_app(config_path='../organia.cfg'):
     app = Flask(__name__)
     os.environ['ORGANIA_CONFIG'] = os.environ.get('ORGANIA_CONFIG', '../organia.cfg')
     app.config.from_object(Config)
-    app.config.from_envvar('ORGANIA_CONFIG')
+    app.config.from_envvar('ORGANIA_CONFIG', True)
     db.init_app(app)
     migrate.init_app(app, db)
 
