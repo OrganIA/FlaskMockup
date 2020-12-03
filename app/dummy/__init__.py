@@ -4,7 +4,9 @@ import string
 import time
 import names
 
-from . import app
+from .. import init_blueprint
+
+bp = init_blueprint(__name__)
 
 DATE_FORMAT = '%d/%m/%Y'
 
@@ -30,8 +32,7 @@ def get_random_entry():
         'ALLOC': get_random_letters(4).upper(),
     }
 
-
-@app.context_processor
+@bp.app_context_processor
 def inject_user():
     return {
         'user': {
