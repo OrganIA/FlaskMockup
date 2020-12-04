@@ -57,7 +57,7 @@
 			{% for row in data %}
 			<tr>
 				{% for value in row.values() %}
-				<td>{{ value }}</td>
+				<td>{% if value == None %}-{% else %}{{ value }}{% endif %}</td>
 				{% endfor %}
 			</tr>
 			{% endfor %}

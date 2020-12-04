@@ -6,10 +6,12 @@ class Receiver(db.Model):
     first_name = db.Column(db.String, info={'label': 'Prénom'})
     last_name = db.Column(db.String, info={'label': 'Nom de famille'})
     birthday = db.Column(db.Date, info={'label': 'Date de naissance'})
-    arrival = db.Column(db.Date, info={'label': 'Arrivée'})
-    needed_organ = db.Column(db.String, info={'label': 'Organe'})
     gender = db.Column(db.String, info={'label': 'Sexe'})
     abo = db.Column(db.String, info={'label': 'ABO'})
+    arrival = db.Column(db.Date, info={'label': 'Arrivée'})
+    needed_organ = db.Column(db.String, info={'label': 'Organe'})
+
+    table_excludes = ['id']
 
 class ReceiverForm(ModelForm):
     submit = 'Ajouter'
