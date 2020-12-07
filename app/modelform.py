@@ -11,6 +11,9 @@ def f_cls(l):
     return {'render_kw': {'data-classes': l }}
 
 class ModelForm(BaseModelForm):
+    class Meta:
+        locales = ['fr_FR', 'fr']
+
     @classmethod
     def get_session(self):
         return db.session
