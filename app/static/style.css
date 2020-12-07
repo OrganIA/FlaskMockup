@@ -266,6 +266,15 @@ tr td:last-child {
 	border-bottom-right-radius: 10px;
 }
 
+#flash-messages {
+	width: 100%;
+}
+
+#flash-messages li {
+	background-color: var(--dark-blue);
+	color: white;
+}
+
 form {
 	max-width: 700px;
 	margin: auto;
@@ -293,4 +302,9 @@ form {
 
 .form-input.mini {
 	width: calc(33% - 1em);
+}
+
+.form-error {
+	font-size: small;
+	color: var(--red);
 }

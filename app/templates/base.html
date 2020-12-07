@@ -49,6 +49,11 @@
 						<i class="fa fa-angle-down caret"></i>
 					</div>
 					{% endif %}
+					<ul id="flash-messages">
+						{% for message in get_flashed_messages() %}
+						<li>{{ message }}</li>
+						{% endfor %}
+					</ul>
 				</div>
 
 				{% if title %}<h1>{{ title }}</h1>{% endif %}

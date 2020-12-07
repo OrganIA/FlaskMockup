@@ -3,15 +3,21 @@ from app.modelform import ModelForm, f_cls
 
 class Receiver(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String, info={'label': 'Prénom'})
-    last_name = db.Column(db.String, info={'label': 'Nom de famille'})
-    birthday = db.Column(db.Date, info={'label': 'Date de naissance'})
-    gender = db.Column(db.String, info={'label': 'Sexe'})
-    abo = db.Column(db.String, info={'label': 'ABO'})
+    first_name = db.Column(db.String, info={'label': 'Prénom'}, nullable=False)
+    last_name = db.Column(db.String, info={'label': 'Nom de famille'}, nullable=False)
+    birthday = db.Column(db.Date, info={'label': 'Date de naissance'}, nullable=False)
+    gender = db.Column(db.String, info={'label': 'Sexe'}, nullable=False)
+    abo = db.Column(db.String, info={'label': 'ABO'}, nullable=False)
+    needed_organ = db.Column(db.String, info={'label': 'Organe'}, nullable=False)
     arrival = db.Column(db.Date, info={'label': 'Arrivée'})
-    needed_organ = db.Column(db.String, info={'label': 'Organe'})
 
     table_excludes = ['id']
+
+    def __str__(self):
+        return '<{0.__class__.__name__}: {0.first_name} {0.last_name} needs {0.needed_organ}>'.format(self)
+
+    def __repr__(self):
+        return str(self)
 
 class ReceiverForm(ModelForm):
     submit = 'Ajouter'

@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import flash, redirect, render_template, url_for
 from sqlalchemy import inspect
 
 from .. import bp
@@ -28,6 +28,14 @@ def random_receivers():
 def add_receiver():
     form = ReceiverForm()
     form.method = 'post'
+    if form.validate():
+        receiver = Receiver()
+        form.populate_obj(receiver)
+        db.session.add(receiver)
+        db.session.commit()
+        flash('Receveur {0.first_name} {0.last_name} ajouté'.format(receiver))
+        return redirect(url_for('.receivers'))
+
     return render_template(
         'form.html',
         title='Ajouter un receveur',

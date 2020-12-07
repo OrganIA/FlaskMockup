@@ -7,6 +7,11 @@
 		<div class="form-input {{ field.render_kw['data-classes']|join(' ') }}">
 			{% if field.type not in ['CSRFTokenField'] %}
 			{{ field.label() }}
+			{% for error in form.errors[field.name] %}
+			<div class="form-error">
+				{{ error }}
+			</div>
+			{% endfor %}
 			{% endif %}
 			{{ field() }}
 		</div>
