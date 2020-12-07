@@ -7,13 +7,18 @@ from ... import dummy
 from app import db
 from app.model import table_rows
 
-@bp.route('/receivers')
+@bp.route('/receivers', methods=['GET', 'POST'])
 def receivers():
-    results = table_rows(Receiver.query.all(), excludes=Receiver.table_excludes)
+    results = table_rows(Receiver.query.all())
+    for r in results:
+        r['action'] = '<a href="{url}">Supprimer</a>'.format(
+            url=url_for('.delete_receiver', id=r['id'])
+        )
     return render_template(
         'receivers.html',
         title='Receveurs',
         data=results,
+        excludes=Receiver.table_excludes,
     )
 
 @bp.route('/receivers/random')
@@ -42,3 +47,17 @@ def add_receiver():
     flash('Receveur {0.first_name} {0.last_name} ajouté'.format(receiver))
     return redirect(url_for('.receivers'))
 
+
+@bp.route('/receivers/delete/<int:id>')
+def delete_receiver(id):
+    receiver = Receiver.query.get_or_404(id)
+    db.session.delete(receiver)
+    db.session.commit()
+    flash('Receveur {0.first_name} {0.last_name} supprimé'.format(receiver))
+    return redirect(url_for('.receivers'))
+
+@bp.route('/receivers/<int:id>')
+def get_receiver(id):
+    receiver = Receiver.query.get_or_404(id)
+    print(receiver)
+    return 'hey {}'.format(receiver.first_name)

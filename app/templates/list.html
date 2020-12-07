@@ -48,7 +48,9 @@
 			{% if data|length > 0 %}
 			<tr>
 			{% for key in data[0].keys() %}
+				{% if key not in excludes %}
 				<th>{{ key }}</th>
+				{% endif %}
 			{% endfor %}
 			</tr>
 			{% endif %}
@@ -56,7 +58,8 @@
 		<tbody>
 			{% for row in data %}
 			<tr>
-				{% for value in row.values() %}
+				{% for key, value in row.items() %}
+				{% if key not in excludes %}
 				<td>
 					{% if value == None %}
 					-
@@ -65,11 +68,12 @@
 					{% if type == 'date' %}
 					{{ value|datetime }}
 					{% else %}
-					{{ value }}
+					{{ value|safe }}
 					{% endif %}
 					{% endwith %}
 					{% endif %}
 				</td>
+				{% endif %}
 				{% endfor %}
 			</tr>
 			{% endfor %}

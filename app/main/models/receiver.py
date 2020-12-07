@@ -14,7 +14,10 @@ class Receiver(db.Model):
     )
     gender = db.Column(
         db.String,
-        info={'label': 'Sexe', 'choices': [('male', 'Homme'), ('female', 'Femme')]},
+        info={
+            'label': 'Sexe',
+            'choices': [('male', 'Homme'), ('female', 'Femme')]
+        },
         nullable=False
     )
     abo = db.Column(
