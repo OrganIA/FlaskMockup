@@ -57,7 +57,19 @@
 			{% for row in data %}
 			<tr>
 				{% for value in row.values() %}
-				<td>{% if value == None %}-{% else %}{{ value }}{% endif %}</td>
+				<td>
+					{% if value == None %}
+					-
+					{% else %}
+					{% with type = value|typify %}
+					{% if type == 'date' %}
+					{{ value|datetime }}
+					{% else %}
+					{{ value }}
+					{% endif %}
+					{% endwith %}
+					{% endif %}
+				</td>
 				{% endfor %}
 			</tr>
 			{% endfor %}

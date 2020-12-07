@@ -28,7 +28,7 @@ def create_app(config_path='../organia.cfg'):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    for module in ['dummy', 'main']:
+    for module in ['dummy', 'filters', 'main']:
         module = importlib.import_module('{}.{}'.format(__name__, module))
         app.register_blueprint(module.bp)
 

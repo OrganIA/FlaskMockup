@@ -28,16 +28,17 @@ def random_receivers():
 def add_receiver():
     form = ReceiverForm()
     form.method = 'post'
-    if form.validate():
-        receiver = Receiver()
-        form.populate_obj(receiver)
-        db.session.add(receiver)
-        db.session.commit()
-        flash('Receveur {0.first_name} {0.last_name} ajouté'.format(receiver))
-        return redirect(url_for('.receivers'))
+    if not form.validate():
+        return render_template(
+            'form.html',
+            title='Ajouter un receveur',
+            form=form,
+        )
+    # Form is valid, we process it
+    receiver = Receiver()
+    form.populate_obj(receiver)
+    db.session.add(receiver)
+    db.session.commit()
+    flash('Receveur {0.first_name} {0.last_name} ajouté'.format(receiver))
+    return redirect(url_for('.receivers'))
 
-    return render_template(
-        'form.html',
-        title='Ajouter un receveur',
-        form=form,
-    )
