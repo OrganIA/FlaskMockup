@@ -1,14 +1,32 @@
 from app import db
 from app.modelform import ModelForm, f_cls
 
+BLOOD_TYPES = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+
 class Receiver(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String, info={'label': 'Prénom'}, nullable=False)
-    last_name = db.Column(db.String, info={'label': 'Nom de famille'}, nullable=False)
-    birthday = db.Column(db.Date, info={'label': 'Date de naissance'}, nullable=False)
-    gender = db.Column(db.String, info={'label': 'Sexe'}, nullable=False)
-    abo = db.Column(db.String, info={'label': 'ABO'}, nullable=False)
-    needed_organ = db.Column(db.String, info={'label': 'Organe'}, nullable=False)
+    last_name = db.Column(
+        db.String, info={'label': 'Nom de famille'}, nullable=False
+    )
+    birthday = db.Column(
+        db.Date, info={'label': 'Date de naissance'}, nullable=False
+    )
+    gender = db.Column(
+        db.String,
+        info={'label': 'Sexe', 'choices': [('male', 'Homme'), ('female', 'Femme')]},
+        nullable=False
+    )
+    abo = db.Column(
+        db.String,
+        info={
+            'label': 'ABO',
+            'choices': [(x, x) for x in BLOOD_TYPES]},
+        nullable=False
+    )
+    needed_organ = db.Column(
+        db.String, info={'label': 'Organe'}, nullable=False
+    )
     arrival = db.Column(db.Date, info={'label': 'Arrivée'})
 
     table_excludes = ['id']
