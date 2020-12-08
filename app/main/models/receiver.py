@@ -42,6 +42,7 @@ class Receiver(db.Model):
 
 class ReceiverForm(ModelForm):
     submit = 'Ajouter'
+    show_requireds = True
     class Meta:
         model = Receiver
         field_args = {

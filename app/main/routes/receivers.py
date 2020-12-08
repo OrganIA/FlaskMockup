@@ -32,8 +32,7 @@ def random_receivers():
 @bp.route('/receivers/add', methods=['GET', 'POST'])
 def add_receiver():
     form = ReceiverForm()
-    form.method = 'post'
-    if not form.validate():
+    if not form.validate_on_submit():
         return render_template(
             'form.html',
             title='Ajouter un receveur',
@@ -59,5 +58,4 @@ def delete_receiver(id):
 @bp.route('/receivers/<int:id>')
 def get_receiver(id):
     receiver = Receiver.query.get_or_404(id)
-    print(receiver)
     return 'hey {}'.format(receiver.first_name)

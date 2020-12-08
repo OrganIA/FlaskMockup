@@ -125,6 +125,20 @@ main {
 	align-items: center;
 }
 
+.show-requireds .form-input.required label::after {
+	content: ' *';
+	color: var(--red);
+}
+
+.required-notice {
+	display: none;
+	color: var(--red);
+}
+
+.show-requireds .required-notice {
+	display: block;
+}
+
 input[type="number"] {
 	min-width: 4em;
 }
