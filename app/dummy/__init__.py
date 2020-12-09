@@ -35,7 +35,7 @@ def get_random_entry():
 @bp.app_context_processor
 def inject_user():
     return {
-        'user': {
+        'dummy_user': {
             'first_name': 'Damien',
             'last_name' : 'Savatier',
             'avatar_url': 'https://avatars3.githubusercontent.com/u/9400466?s=460&v=4',
