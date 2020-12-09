@@ -1,14 +1,11 @@
 from app import db
+from app.models import Person
 from app.modelform import ModelForm, f_cls, lbl
 
 BLOOD_TYPES = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
 
-class Receiver(db.Model):
+class Receiver(db.Model, Person):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String, **lbl('Prénom'), nullable=False)
-    last_name = db.Column(
-        db.String, **lbl('Nom de famille'), nullable=False
-    )
     birthday = db.Column(
         db.Date, **lbl('Date de naissance'), nullable=False
     )
