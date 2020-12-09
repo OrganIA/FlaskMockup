@@ -173,6 +173,8 @@ button.active,
 	flex-direction: row;
 	align-items: center;
 	flex: 0 0 auto;
+	text-decoration: none;
+	color: inherit;
 }
 
 #current-user > * {
@@ -295,6 +297,8 @@ tr td:last-child {
 #flash-messages li {
 	background-color: var(--dark-blue);
 	color: white;
+	padding: 0.5em 1em;
+	border-radius: var(--rounding);
 }
 
 form {

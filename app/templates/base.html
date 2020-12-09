@@ -45,11 +45,18 @@
 
 			<main>
 				<div id="context-menu">
-					{% if user %}
-					<div id="current-user">
-						<img class="avatar" src="{{ user.avatar_url }}">
-						{{ user.first_name }} {{ user.last_name }}
+					{% if current_user.is_authenticated %}
+					<a href="{{ url_for('main.logout') }}" id="current-user">
+						{% if current_user.avatar_url %}
+						<img class="avatar" src="{{ current_user.avatar_url }}">
+						{% endif %}
+						{{ current_user.first_name }} {{ current_user.last_name }}
 						<i class="fa fa-angle-down caret"></i>
+					</a>
+					{% else %}
+					<div id="login-menu">
+						<a class="button" href="{{ url_for('main.login') }}">Se connecter</a>
+						<a class="button" href="{{ url_for('main.register') }}">S'inscrire</a>
 					</div>
 					{% endif %}
 					<ul id="flash-messages">

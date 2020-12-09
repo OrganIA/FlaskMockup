@@ -1,24 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method={{ form.method or 'GET' }}>
+<form
+	method={{ 'get' if form.get else 'post' }}
+	class="
+	{% if form.show_requireds %}show-requireds{% endif %}
+	"
+>
+	{% if form_title %}<h2 class="form-title">{{ form_title }}</h2>{% endif %}
 	<div class="form-fields">
 		{% for field in form %}
+		{% if (excludes is defined and field.name not in excludes) or not includes or field.name in includes %}
+		{% if field.type in ['CSRFTokenField'] %}
+		{{ field() }}
+		{% else %}
 		<div class="form-input {{ field.render_kw['data-classes']|join(' ') }}">
-			{% if field.type not in ['CSRFTokenField'] %}
 			{{ field.label() }}
 			{% for error in form.errors[field.name] %}
 			<div class="form-error">
 				{{ error }}
 			</div>
 			{% endfor %}
-			{% endif %}
 			{{ field() }}
 		</div>
+		{% endif %}
+		{% endif %}
 		{% endfor %}
 	</div>
+	<p class="required-notice">* Obligatoire</p>
 	<div class="form-submit">
 		<button type="submit">{{ form.submit }}</button>
+		{% block buttons %}
+		{% endblock %}
 	</div>
 </form>
 {% endblock %}

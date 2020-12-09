@@ -1,6 +1,7 @@
 import importlib
 import os
 from flask import Flask, Blueprint
+from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
@@ -8,6 +9,7 @@ from .config import Config
 
 
 db = SQLAlchemy()
+login_manager = LoginManager()
 migrate = Migrate()
 
 def init_blueprint(module, prefix=False, **kwargs):
@@ -27,6 +29,8 @@ def create_app(config_path='../organia.cfg'):
     app.config.from_envvar('ORGANIA_CONFIG', True)
     db.init_app(app)
     migrate.init_app(app, db)
+    login_manager.init_app(app)
+    login_manager.view = 'main.login'
 
     for module in ['dummy', 'filters', 'main']:
         module = importlib.import_module('{}.{}'.format(__name__, module))

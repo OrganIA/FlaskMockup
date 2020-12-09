@@ -35,7 +35,7 @@ def add_receiver():
     if not form.validate_on_submit():
         return render_template(
             'form.html',
-            title='Ajouter un receveur',
+            form_title='Ajouter un receveur',
             form=form,
         )
     # Form is valid, we process it
@@ -57,5 +57,6 @@ def delete_receiver(id):
 
 @bp.route('/receivers/<int:id>')
 def get_receiver(id):
+    #TODO
     receiver = Receiver.query.get_or_404(id)
     return 'hey {}'.format(receiver.first_name)

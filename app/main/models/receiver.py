@@ -1,16 +1,16 @@
 from app import db
-from app.modelform import ModelForm, f_cls
+from app.modelform import ModelForm, f_cls, lbl
 
 BLOOD_TYPES = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
 
 class Receiver(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String, info={'label': 'Prénom'}, nullable=False)
+    first_name = db.Column(db.String, **lbl('Prénom'), nullable=False)
     last_name = db.Column(
-        db.String, info={'label': 'Nom de famille'}, nullable=False
+        db.String, **lbl('Nom de famille'), nullable=False
     )
     birthday = db.Column(
-        db.Date, info={'label': 'Date de naissance'}, nullable=False
+        db.Date, **lbl('Date de naissance'), nullable=False
     )
     gender = db.Column(
         db.String,
@@ -28,9 +28,9 @@ class Receiver(db.Model):
         nullable=False
     )
     needed_organ = db.Column(
-        db.String, info={'label': 'Organe'}, nullable=False
+        db.String, **lbl('Organe'), nullable=False
     )
-    arrival = db.Column(db.Date, info={'label': 'Arrivée'})
+    arrival = db.Column(db.Date, **lbl('Arrivée'))
 
     table_excludes = ['id']
 
