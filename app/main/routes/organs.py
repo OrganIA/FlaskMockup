@@ -1,4 +1,5 @@
 from flask import flash, redirect, render_template, url_for
+import random
 from sqlalchemy import inspect
 
 from .. import bp
@@ -10,7 +11,7 @@ from app.model import table_rows, table_inject
 def get_persons(t):
     results = table_rows(t.query.all())
     table_inject(results, 'action',
-        lambda x: '<a href="{url}">Supprimer</a>'.format(
+        lambda x: '<a href="{url}"><i class="fas fa-trash-alt"></i></a>'.format(
             url=url_for('.delete_{}'.format(t.__tablename__.lower()), id=x['id'])
         )
     )
@@ -21,7 +22,6 @@ tabs = [('.receivers', 'Receveurs'), ('.donors', 'Donneurs')]
 
 @bp.route('/receivers')
 def receivers():
-    print(tabs)
     return render_template(
         'organs.html',
         add_route='.add_receiver',
@@ -33,12 +33,17 @@ def receivers():
 
 @bp.route('/donors')
 def donors():
+    data = get_persons(Donor)
+    for r in data:
+        r['action'] = ' <a href="{url}"><i class="fa fa-search"></i></a> '.format(
+            url=url_for('.match_donor', id=r['id'])
+        ) + r['action']
     return render_template(
         'organs.html',
         add_route='.add_donor',
         title=title,
         tabs=tabs,
-        data=get_persons(Donor),
+        data=data,
         excludes=Donor.table_excludes,
     )
 
@@ -99,6 +104,27 @@ def delete_receiver(id):
 def delete_donor(id):
     delete_person(Donor, id)
     return redirect(url_for('.donors'))
+
+@bp.route('/donors/match/<int:id>')
+def match_donor(id):
+    donor = Donor.query.get_or_404(id)
+    matching_receivers = Receiver.query.filter_by(
+        organ=donor.organ
+    ).all()
+    data=table_rows(matching_receivers)
+    for r in data:
+        r['Score'] = random.random() * 1000
+    data.sort(key=lambda x: x['Score'], reverse=True)
+    for r in data:
+        r['Score'] = '{:.1f}'.format(r['Score'])
+    return render_template(
+        'matching.html',
+        title='Receveurs correspondants',
+        donor=donor,
+        data =data,
+        table_id='matching-results',
+        excludes=Receiver.table_excludes,
+    )
 
 @bp.route('/receivers/<int:id>')
 def get_receiver(id):

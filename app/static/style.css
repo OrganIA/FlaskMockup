@@ -5,7 +5,7 @@
 :root {
 	--blue: #498afe;
 	--dark-blue: #071f49;
-	--sky-blue: #c7d0e8;
+	--sky-blue: #97a0b8;
 	--white: #fbfcff;
 	--red: #ff5b5b;
 	--gray: #8e8e8e;
@@ -53,6 +53,19 @@ body {
 a,
 button {
 	cursor: pointer;
+}
+
+a, a:visited, a:active {
+	color: var(--blue);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+button:hover, .button:hover {
+	text-decoration: none;
 }
 
 img {
@@ -161,6 +174,7 @@ button.active,
 #context-menu {
 	display: flex;
 	flex-flow: wrap row;
+	align-items: center;
 }
 
 #current-user {
@@ -248,7 +262,7 @@ button.active,
 	padding-bottom: 0.5em;
 }
 
-.tab-title {
+.tab-title, .tab-title:visited {
 	display: inline-block;
 	margin: 0 0.5em;
 	color: var(--sky-blue);
@@ -264,6 +278,10 @@ table {
 	/* border-collapse: collapse; */
 	border-spacing: 0 .3em;
 	width: 100%;
+}
+
+table .fa {
+	margin: 0 .5em;
 }
 
 th {
@@ -334,4 +352,39 @@ form {
 .form-error {
 	font-size: small;
 	color: var(--red);
+}
+
+#donor-info {
+	background-color: var(--blue);
+	color: white;
+	border-radius: var(--rounding);
+	padding: 1em;
+	display: inline-block;
+}
+
+#donor-image {
+	margin-right: 1em;
+}
+
+#donor-text p {
+	margin-top: 0;
+}
+
+.loading-icon {
+	text-align: center;
+	font-size: 64px;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+}
+
+.hide {
+	display: none;
 }

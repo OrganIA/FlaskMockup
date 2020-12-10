@@ -1,0 +1,24 @@
+{% extends "list.html" %}
+{% block more %}
+<div id="donor-info">
+	<div class="row">
+		<div id="donor-image">
+			<img src="{{ donor.avatar_url }}">
+		</div>
+		<div id="donor-text">
+			<p>
+				Organe de {{ donor.first_name }} {{ donor.last_name }}
+			</p>
+			<p>
+				Né le {{ donor.birthday }}
+			</p>
+			<p>
+				Organe : {{ donor.organ }}
+			</p>
+			<p>
+				ABO : {{ donor.abo }}
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -21,7 +21,7 @@ def login():
     if not form.is_submitted():
         return exit()
     try:
-        user = User.query.filter_by(username=form.username.data).one()
+        user = User.query.filter_by(email=form.email.data).one()
     except (NoResultFound, MultipleResultsFound) as e:
         flash("L'utilisateur est introuvable")
         return exit()

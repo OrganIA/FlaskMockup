@@ -24,3 +24,13 @@ Array.prototype.forEach.call(form_inputs, e => {
 	if (e.querySelector('[required]'))
 		e.classList.add('required');
 });
+
+const matching_results = document.getElementById("matching-results");
+const matching_loading = document.createElement("div");
+matching_loading.classList.add("loading-icon", "fa", "fa-spinner", "fa-spin");
+matching_results.after(matching_loading);
+matching_results.classList.add("hide");
+setTimeout(() => {
+	matching_loading.remove();
+	matching_results.classList.remove("hide");
+}, 2500);

@@ -9,3 +9,7 @@ class Person:
 
     def __str__(self):
         return '{person.first_name} {person.last_name}'.format(person=self)
+
+    @property
+    def avatar_url(self):
+        return 'https://www.gravatar.com/avatar/4b9411a9b28f9063ea75e5fee24bb2a8?d=mp&r=pg'

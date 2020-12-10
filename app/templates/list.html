@@ -51,7 +51,10 @@
 		</div>
 	</div>
 
-	<table>
+	<table
+		{% if table_id %}id="{{ table_id }}"{% endif %}
+		class="table-list"
+	>
 		<thead>
 			{% if data|length > 0 %}
 			<tr>
