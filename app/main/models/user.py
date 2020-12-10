@@ -15,9 +15,6 @@ class User(UserMixin, db.Model, Person):
     def __repr__(self):
         return '<{user.__class__.__name__}#{user.id} {user.username}>'.format(user=self)
 
-    def __str__(self):
-        return '{user.first_name} {user.last_name}'.format(user=self)
-
     @property
     def avatar_url(self, size=None):
         if not self.email:

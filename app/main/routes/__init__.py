@@ -1,1 +1,1 @@
-from . import main, receivers, user
+from . import control_panel,  main, organs, user

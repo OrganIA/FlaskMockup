@@ -18,3 +18,7 @@ def table_rows(rows, order=None, excludes=[]):
             for key in keys if key not in excludes
         } for row in rows
     ]
+
+def table_inject(rows, column, data):
+    for r in rows:
+        r[column] = data(r) if callable(data) else data

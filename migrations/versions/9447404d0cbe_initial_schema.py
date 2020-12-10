@@ -1,8 +1,8 @@
 """Initial schema
 
-Revision ID: 99f3f5c75c1d
+Revision ID: 9447404d0cbe
 Revises: 
-Create Date: 2020-12-09 01:16:50.573390
+Create Date: 2020-12-10 00:09:17.476412
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '99f3f5c75c1d'
+revision = '9447404d0cbe'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,24 +21,22 @@ def upgrade():
     op.create_table('receiver',
     sa.Column('first_name', sa.String(), nullable=False),
     sa.Column('last_name', sa.String(), nullable=False),
-    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('birthday', sa.Date(), nullable=False),
     sa.Column('gender', sa.String(), nullable=False),
     sa.Column('abo', sa.String(), nullable=False),
-    sa.Column('needed_organ', sa.String(), nullable=False),
+    sa.Column('organ', sa.String(), nullable=False),
     sa.Column('arrival', sa.Date(), nullable=True),
+    sa.Column('id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_receiver'))
     )
     op.create_table('user',
     sa.Column('first_name', sa.String(), nullable=False),
     sa.Column('last_name', sa.String(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(), nullable=True),
     sa.Column('email', sa.String(), nullable=True),
     sa.Column('password', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_user')),
-    sa.UniqueConstraint('email', name=op.f('uq_user_email')),
-    sa.UniqueConstraint('username', name=op.f('uq_user_username'))
+    sa.UniqueConstraint('email', name=op.f('uq_user_email'))
     )
     # ### end Alembic commands ###
 

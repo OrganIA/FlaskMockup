@@ -4,8 +4,16 @@
 	{% endblock %}
 	<div class="tabs-section">
 		<div class="tabs">
-			<a class="tab-title active">Onglet 1</a>
-			<a class="tab-title">Onglet 2</a>
+			{% for tab in tabs %}
+			{% with url = url_for(tab[0]) %}
+			<a
+				class="tab-title {% if url == url_for(request.url_rule.endpoint) %}active{% endif %}"
+				href="{{ url }}"
+			>
+				{{ tab[1] }}
+			</a>
+			{% endwith %}
+			{% endfor %}
 		</div>
 		<div class="side-container">
 			<div class="side-actions">

@@ -59,6 +59,9 @@
 						<a class="button" href="{{ url_for('main.register') }}">S'inscrire</a>
 					</div>
 					{% endif %}
+					<div id="extra-buttons">
+						<a class="button" href="{{ url_for('main.cpanel') }}">Panel administrateur</a>
+					</div>
 					<ul id="flash-messages">
 						{% for message in get_flashed_messages() %}
 						<li>{{ message }}</li>

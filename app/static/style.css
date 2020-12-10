@@ -252,6 +252,7 @@ button.active,
 	display: inline-block;
 	margin: 0 0.5em;
 	color: var(--sky-blue);
+	text-decoration: none;
 }
 
 .tab-title.active {

@@ -17,7 +17,7 @@ def login():
         )
     form = UserForm()
     form.submit = 'Se connecter'
-    form.sort_by(['username', 'password'])
+    form.sort_by(['email', 'password'])
     if not form.is_submitted():
         return exit()
     try:
