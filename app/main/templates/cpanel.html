@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="flex-items">
-	<div class="column">
+	<div>
 		<p>Ajouter des receveurs aléatoire</p>
 		<a class="button active" href="{{ url_for('.add_random_receivers') }}">Exécuter</a>
 	</div>
-	<div class="column">
+	<div>
 		<p>Ajouter des donneurs aléatoire</p>
 		<a class="button active" href="{{ url_for('.add_random_donors') }}">Exécuter</a>
 	</div>
-	<div class="column">
+	<div>
 		<p>Supprimer tout les donneurs et receveurs</p>
 		<a class="button active" href="{{ url_for('.delete_all_persons') }}">Exécuter</a>
 	</div>
