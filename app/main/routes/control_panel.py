@@ -21,7 +21,7 @@ def fill_random(person):
     person.gender = random.choice(data.GENDERS)[1]
     person.abo = random.choice(data.BLOOD_TYPES)
     if person.gender != 'Femme':
-        organs = [x for x in data.ORGANS if x[0] != 'uterus']
+        organs = [x for x in data.ORGANS if x[1] != 'Utérus']
     else:
         organs = data.ORGANS
     person.organ = random.choice(organs)[1]
