@@ -90,7 +90,10 @@ def add_donor():
     return redirect(url_for('.donors'))
 
 def delete_person(t, id):
-    person = t.query.get_or_404(id)
+    person = t.query.get(id)
+    if person is None:
+        flash('Cet individu n\'existe pas')
+        return
     db.session.delete(person)
     db.session.commit()
     flash('{} supprimé'.format(person))
