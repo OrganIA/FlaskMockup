@@ -8,7 +8,7 @@ def dictify_rows(rows):
 
 def table_rows(rows, order=None, excludes=[]):
     if len(rows) == 0:
-        return {}
+        return []
     table = rows[0].__table__
     keys = order or [str(x)[len(str(table)) + 1:] for x in table.columns]
     return [
